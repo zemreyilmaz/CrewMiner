@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Orders>
+  <Order identifier="crewminer" category="Movement" options="prepare,depart,return"
+         mustsettarget="false" canbegeneralized="true" mustmanuallyassign="true"
+         targetallcharacters="false" autodismiss="true" color="102,205,235,255">
+    <Sprite texture="%ModDir%/Icon.png" sourcerect="0,0,64,64" origin="0.5,0.5" />
+    <OptionSprites>
+      <Sprite texture="%ModDir%/Icon.png" sourcerect="0,0,64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Icon.png" sourcerect="0,0,64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Icon.png" sourcerect="0,0,64,64" origin="0.5,0.5" />
+    </OptionSprites>
+  </Order>
+</Orders>

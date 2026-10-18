@@ -1,0 +1,7 @@
+Refs/
+build/
+**/bin/
+**/obj/
+CrewMiner.log
+CrewMiner.previous.log
+.DS_Store

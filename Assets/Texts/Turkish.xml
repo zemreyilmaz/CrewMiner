@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="Turkish" nowhitespace="false" translatedname="Türkçe">
+  <OrderName.crewminer>CrewMiner</OrderName.crewminer>
+  <OrderOptions.crewminer>Madenciliğe hazırlan,Çık ve maden topla,Geri dön / İptal</OrderOptions.crewminer>
+  <OrderDialog.crewminer.prepare>[name], madenciliğe hazırlan ve airlock'ta bekle.</OrderDialog.crewminer.prepare>
+  <OrderDialog.crewminer.depart>[name], çık ve çevredeki madenleri topla.</OrderDialog.crewminer.depart>
+  <OrderDialog.crewminer.return>[name], madenciliği bırak ve geri dön.</OrderDialog.crewminer.return>
+</infotexts>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Maden arama menzili: denizaltının Çık emri anındaki merkezinden yarıçap, metre.
+     SearchRadiusMetres: 5..150, varsayılan 40. Değişiklik sonraki sefere uygulanır.
+     Çalışırken merkez ve menzil sabittir. Dönüş hareket eden denizaltıyadır.
+     Ondalıklarda nokta kullanın. Diğer ayarların sınırları docs/SETTINGS.md içindedir. -->
+<CrewMiner SearchRadiusMetres="40" ScanIntervalSeconds="3"
+  WaitingWaypointTag="crewminer_wait" StorageTag="crewminer_storage"
+  MinimumFreeSlots="2" MinimumDepartureOxygenPercent="85" OxygenReservePercent="15"
+  OxygenDrainPercentPerSecond="0.5" MinimumSwimSpeedMetresPerSecond="1.2"
+  RouteSafetyFactor="1.5" ReturnMarginSeconds="45"
+  PrepareTimeoutSeconds="180" TargetTimeoutSeconds="90" ReturnTimeoutSeconds="180" StuckTimeoutSeconds="25" />

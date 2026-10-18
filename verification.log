@@ -1,0 +1,147 @@
+8.0.421
+PASS: departure/Preparing/station=False/equipment=False
+PASS: departure/Preparing/station=False/equipment=True
+PASS: departure/Preparing/station=True/equipment=False
+PASS: departure/Preparing/station=True/equipment=True
+PASS: departure/Staging/station=False/equipment=False
+PASS: departure/Staging/station=False/equipment=True
+PASS: departure/Staging/station=True/equipment=False
+PASS: departure/Staging/station=True/equipment=True
+PASS: departure/Ready/station=False/equipment=False
+PASS: departure/Ready/station=False/equipment=True
+PASS: departure/Ready/station=True/equipment=False
+PASS: departure/Ready/station=True/equipment=True
+PASS: departure/Searching/station=False/equipment=False
+PASS: departure/Searching/station=False/equipment=True
+PASS: departure/Searching/station=True/equipment=False
+PASS: departure/Searching/station=True/equipment=True
+PASS: departure/Approaching/station=False/equipment=False
+PASS: departure/Approaching/station=False/equipment=True
+PASS: departure/Approaching/station=True/equipment=False
+PASS: departure/Approaching/station=True/equipment=True
+PASS: departure/Cutting/station=False/equipment=False
+PASS: departure/Cutting/station=False/equipment=True
+PASS: departure/Cutting/station=True/equipment=False
+PASS: departure/Cutting/station=True/equipment=True
+PASS: departure/Collecting/station=False/equipment=False
+PASS: departure/Collecting/station=False/equipment=True
+PASS: departure/Collecting/station=True/equipment=False
+PASS: departure/Collecting/station=True/equipment=True
+PASS: departure/Returning/station=False/equipment=False
+PASS: departure/Returning/station=False/equipment=True
+PASS: departure/Returning/station=True/equipment=False
+PASS: departure/Returning/station=True/equipment=True
+PASS: departure/Unloading/station=False/equipment=False
+PASS: departure/Unloading/station=False/equipment=True
+PASS: departure/Unloading/station=True/equipment=False
+PASS: departure/Unloading/station=True/equipment=True
+PASS: departure/Stopped/station=False/equipment=False
+PASS: departure/Stopped/station=False/equipment=True
+PASS: departure/Stopped/station=True/equipment=False
+PASS: departure/Stopped/station=True/equipment=True
+PASS: range includes exact boundary
+PASS: range rejects just beyond boundary
+PASS: range rejects diagonal outside
+PASS: negative world coordinates
+PASS: moving submarine cannot extend expedition area
+PASS: new expedition can capture new center
+PASS: settings reload applies to next snapshot
+PASS: invalid floats fail to safe defaults
+PASS: valid radius boundary 5
+PASS: valid radius boundary 150
+PASS: invalid radius 4.9
+PASS: invalid radius 150.1
+PASS: invalid radius -1
+PASS: invalid radius garbage
+PASS: fractional inventory slot count is rejected
+PASS: broken XML has usable defaults
+PASS: bot A reserves mineral
+PASS: same bot may retain reservation
+PASS: bot B cannot reserve same mineral
+PASS: bot B reserves different mineral
+PASS: cancel/completion releases owner only
+PASS: removed target releases claim
+PASS: dead/suspended owner releases claims
+PASS: round cleanup releases all claims
+PASS: longer return requires more oxygen
+PASS: slower swimming increases required oxygen
+PASS: observed fast drain never lowers floor
+PASS: exhausted budget rejected before empty tank
+PASS: impossible oxygen budget cannot pass with full tank
+PASS: only mining phases count as work
+70 checks passed. No game runtime was started.
+Windows: Barotrauma 1.13.4.0
+  Barotrauma.AIObjective Barotrauma.AIObjectiveManager::CreateObjective(Barotrauma.Order,System.Single)
+  System.Void Barotrauma.AIObjectiveManager::UpdateObjectives(System.Single)
+  System.Void Barotrauma.GameSession::Update(System.Single)
+  System.Void Barotrauma.GameSession::EndRound(System.String,Barotrauma.CampaignMode/TransitionType,System.Nullable`1<Barotrauma.TraitorManager/TraitorResults>,System.Boolean)
+  System.Void Barotrauma.Character::set_Controlled(Barotrauma.Character)
+  System.Void Barotrauma.AIObjectiveGoTo::.ctor(Barotrauma.ISpatialEntity,Barotrauma.Character,Barotrauma.AIObjectiveManager,System.Boolean,System.Boolean,System.Single,System.Single)
+  System.Void Barotrauma.AIObjectiveGetItem::.ctor(Barotrauma.Character,Barotrauma.Item,Barotrauma.AIObjectiveManager,System.Boolean,System.Single)
+  System.Void Barotrauma.AIObjectiveContainItem::.ctor(Barotrauma.Character,Barotrauma.Item,Barotrauma.Items.Components.ItemContainer,Barotrauma.AIObjectiveManager,System.Single)
+  System.Boolean Barotrauma.Items.Components.LevelResource::get_Attached()
+  System.Boolean Barotrauma.Items.Components.Pickable::OnPicked(Barotrauma.Character,System.Boolean,System.Boolean)
+  System.Boolean Barotrauma.Items.Components.RepairTool::Use(System.Single,Barotrauma.Character)
+  System.Boolean Barotrauma.Item::TryInteract(Barotrauma.Character,System.Boolean,System.Boolean,System.Boolean)
+  System.Void Barotrauma.Character::SetInput(Barotrauma.InputType,System.Boolean,System.Boolean)
+  System.Boolean Barotrauma.LuaCs.IPluginManagementService::TryGetPackageForPlugin(Barotrauma.ContentPackage&)
+Linux: Barotrauma 1.13.4.0
+  Barotrauma.AIObjective Barotrauma.AIObjectiveManager::CreateObjective(Barotrauma.Order,System.Single)
+  System.Void Barotrauma.AIObjectiveManager::UpdateObjectives(System.Single)
+  System.Void Barotrauma.GameSession::Update(System.Single)
+  System.Void Barotrauma.GameSession::EndRound(System.String,Barotrauma.CampaignMode/TransitionType,System.Nullable`1<Barotrauma.TraitorManager/TraitorResults>,System.Boolean)
+  System.Void Barotrauma.Character::set_Controlled(Barotrauma.Character)
+  System.Void Barotrauma.AIObjectiveGoTo::.ctor(Barotrauma.ISpatialEntity,Barotrauma.Character,Barotrauma.AIObjectiveManager,System.Boolean,System.Boolean,System.Single,System.Single)
+  System.Void Barotrauma.AIObjectiveGetItem::.ctor(Barotrauma.Character,Barotrauma.Item,Barotrauma.AIObjectiveManager,System.Boolean,System.Single)
+  System.Void Barotrauma.AIObjectiveContainItem::.ctor(Barotrauma.Character,Barotrauma.Item,Barotrauma.Items.Components.ItemContainer,Barotrauma.AIObjectiveManager,System.Single)
+  System.Boolean Barotrauma.Items.Components.LevelResource::get_Attached()
+  System.Boolean Barotrauma.Items.Components.Pickable::OnPicked(Barotrauma.Character,System.Boolean,System.Boolean)
+  System.Boolean Barotrauma.Items.Components.RepairTool::Use(System.Single,Barotrauma.Character)
+  System.Boolean Barotrauma.Item::TryInteract(Barotrauma.Character,System.Boolean,System.Boolean,System.Boolean)
+  System.Void Barotrauma.Character::SetInput(Barotrauma.InputType,System.Boolean,System.Boolean)
+  System.Boolean Barotrauma.LuaCs.IPluginManagementService::TryGetPackageForPlugin(Barotrauma.ContentPackage&)
+OSX: Barotrauma 1.13.4.0
+  Barotrauma.AIObjective Barotrauma.AIObjectiveManager::CreateObjective(Barotrauma.Order,System.Single)
+  System.Void Barotrauma.AIObjectiveManager::UpdateObjectives(System.Single)
+  System.Void Barotrauma.GameSession::Update(System.Single)
+  System.Void Barotrauma.GameSession::EndRound(System.String,Barotrauma.CampaignMode/TransitionType,System.Nullable`1<Barotrauma.TraitorManager/TraitorResults>,System.Boolean)
+  System.Void Barotrauma.Character::set_Controlled(Barotrauma.Character)
+  System.Void Barotrauma.AIObjectiveGoTo::.ctor(Barotrauma.ISpatialEntity,Barotrauma.Character,Barotrauma.AIObjectiveManager,System.Boolean,System.Boolean,System.Single,System.Single)
+  System.Void Barotrauma.AIObjectiveGetItem::.ctor(Barotrauma.Character,Barotrauma.Item,Barotrauma.AIObjectiveManager,System.Boolean,System.Single)
+  System.Void Barotrauma.AIObjectiveContainItem::.ctor(Barotrauma.Character,Barotrauma.Item,Barotrauma.Items.Components.ItemContainer,Barotrauma.AIObjectiveManager,System.Single)
+  System.Boolean Barotrauma.Items.Components.LevelResource::get_Attached()
+  System.Boolean Barotrauma.Items.Components.Pickable::OnPicked(Barotrauma.Character,System.Boolean,System.Boolean)
+  System.Boolean Barotrauma.Items.Components.RepairTool::Use(System.Single,Barotrauma.Character)
+  System.Boolean Barotrauma.Item::TryInteract(Barotrauma.Character,System.Boolean,System.Boolean,System.Boolean)
+  System.Void Barotrauma.Character::SetInput(Barotrauma.InputType,System.Boolean,System.Boolean)
+  System.Boolean Barotrauma.LuaCs.IPluginManagementService::TryGetPackageForPlugin(Barotrauma.ContentPackage&)
+51 metadata checks passed; DLLs were inspected without running the game.
+  Geri yüklenecek projeler belirleniyor...
+  Geri yükleme için tüm projeler güncel.
+  CrewMiner -> <PROJECT>/build/LocalMods/CrewMiner/bin/Client/Windows/CrewMiner.dll
+
+Oluşturma başarılı oldu.
+    0 Uyarı
+    0 Hata
+
+Geçen Süre 00:00:00.41
+  Geri yüklenecek projeler belirleniyor...
+  Geri yükleme için tüm projeler güncel.
+  CrewMiner -> <PROJECT>/build/LocalMods/CrewMiner/bin/Client/Linux/CrewMiner.dll
+
+Oluşturma başarılı oldu.
+    0 Uyarı
+    0 Hata
+
+Geçen Süre 00:00:00.42
+  Geri yüklenecek projeler belirleniyor...
+  Geri yükleme için tüm projeler güncel.
+  CrewMiner -> <PROJECT>/build/LocalMods/CrewMiner/bin/Client/OSX/CrewMiner.dll
+
+Oluşturma başarılı oldu.
+    0 Uyarı
+    0 Hata
+
+Geçen Süre 00:00:00.40
+Package XML and asset paths verified.
+Mod ZIP: <PROJECT>/build/CrewMiner-0.1.0-mod.zip

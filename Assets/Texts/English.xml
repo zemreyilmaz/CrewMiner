@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <OrderName.crewminer>CrewMiner</OrderName.crewminer>
+  <OrderOptions.crewminer>Prepare for mining,Depart and mine,Return / Cancel</OrderOptions.crewminer>
+  <OrderDialog.crewminer.prepare>[name], prepare for mining and wait at the airlock.</OrderDialog.crewminer.prepare>
+  <OrderDialog.crewminer.depart>[name], depart and collect nearby minerals.</OrderDialog.crewminer.depart>
+  <OrderDialog.crewminer.return>[name], stop mining and return.</OrderDialog.crewminer.return>
+</infotexts>

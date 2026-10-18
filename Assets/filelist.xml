@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="CrewMiner" modversion="0.1.0" gameversion="1.13.4.0" corepackage="false">
+  <Orders file="%ModDir%/Orders.xml" />
+  <Text file="%ModDir%/Texts/Turkish.xml" />
+  <Text file="%ModDir%/Texts/English.xml" />
+</contentpackage>
