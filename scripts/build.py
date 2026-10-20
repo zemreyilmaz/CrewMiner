@@ -38,7 +38,7 @@ def main():
             shutil.copy2(ROOT/name,package/name)
         shutil.copytree(ROOT/'docs',package/'docs')
         validate_package(package)
-        target=build/'CrewMiner-0.1.0-mod.zip'
+        target=build/'CrewMiner-0.1.1-mod.zip'
         with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as z:
             for p in sorted(package.rglob('*')):
                 if p.is_file():z.write(p,p.relative_to(package.parent.parent))

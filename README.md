@@ -1,4 +1,4 @@
-# CrewMiner 0.1.0 — oyun içi test adayı
+# CrewMiner 0.1.1 — oyun içi test adayı
 
 İki aşamalı bot madenciliği: ekipman hazırlanır ve airlock yakınında beklenir; yalnızca ayrı **Çık ve maden topla** emriyle madencilik başlar. Hazır olmayan bota verilen çıkış emri saklanmaz.
 
@@ -6,13 +6,25 @@
 
 Yerel derleme ve mantık kontrolleri yapıldı; gerçek oyun açılmadı. Airlock geçişi, araç animasyonu, raycast ve fizik davranışları arkadaşınızın bilgisayarında aşağıdaki testlerden geçmelidir.
 
+## Bot hareket etmiyorsa (0.1.1)
+
+Oyunu tamamen kapatın. Eski CrewMiner klasörünü yedekleyip yeni mod ZIP'ini oyun dizinine açın; aynı modun iki kopyasını etkinleştirmeyin. Kaydedilmiş özel menzil/waypoint ayarlarınızı yedekten taşıyabilirsiniz. Botun kontrolü başka karakterdeyken Madenciliğe hazırlan verin, 10 saniye bekleyin; F3 konsolunda:
+
+```text
+crewminer_status
+```
+
+Bu salt okunur komut, yüklenen mod/oyun sürümünü, C# davranış yamalarının durumunu, oturum türünü, bot emirlerini, görev aşamasını, aktif AI görevini ve son engel mesajını yazar. Hileleri açmak gerekmez. `STATUS` ile `STATUS SONU` arasını veya CrewMiner.log dosyasını paylaşın. **Komut tanınmıyorsa** 0.1.1'in C# DLL'i yüklenmemiştir (eski paket, istemci Luatrauma/C# ayarı veya yükleyici uyumu araştırılmalı). Menü seçeneklerinin görünmesi tek başına DLL'in yüklendiğini kanıtlamaz.
+
+0.1.1 tanılama sürümüdür; arkadaşınızın hareketsizlik nedenini henüz doğrulamadığımız için davranış sorununun giderildiği iddia edilmez. Çıkış, sürüm, güvenlik ve çok oyunculu kısıtları korunur.
+
 ## Kurulum
 
 1. Oyunun ana menüsünden sürümün **1.13.4.0** olduğunu kontrol edin. İşletim sistemi, oyun/yükleyici sürümü ve tek oyunculu kullanım bilgilerini test raporuna yazın. Geliştirme sırasında arkadaşınızın bu bilgileri bilinmiyordu; hedef sürüm varsayımı yayımlanan gerçek DLL'lere göre belirlendi.
 2. Uyumlu **istemci Luatrauma** kurulumunu yapın. [Resmî kurulum belgesi](https://luatrauma.github.io/Luatrauma.Docs/installation/) ve [hedef yayın](https://github.com/evilfactory/LuaCsForBarotrauma/releases/tag/latest). Elle kurulum için işletim sisteminize uygun `luacsforbarotrauma_patch_windows_client.zip`, `..._linux_client.zip` veya `..._mac_client.zip` kullanılır. `latest` etiketi değişebilir; hedef commit yukarıdadır. Farklı oyun sürümüne bu DLL'leri zorla kurmayın.
 3. Mod ZIP'ini oyun klasörüne açın. Sonuç **`LocalMods/CrewMiner/filelist.xml`** olmalı; araya ikinci bir `CrewMiner` klasörü girmemeli. macOS'ta oyun dosyaları genellikle `Barotrauma.app/Contents/MacOS` altındadır; Steam > Yönet > Yerel dosyalara göz at ile bulun.
 4. Luatrauma ayarlarında C# modlarının çalışmasına izin verin. Oyunun Mods ekranında CrewMiner paketini etkinleştirin, oyunu yeniden başlatın.
-5. F3 konsolunda `[CrewMiner] CrewMiner 0.1.0; oyun=1.13.4.0; tek oyunculu; uyumlu=True` başlangıç satırını kontrol edin. Luatrauma kuruluysa `cl_reloadluacs` komutu tanınır. İlk testte başka bot AI modlarını kapatın.
+5. F3 konsolunda `[CrewMiner] CrewMiner 0.1.1; oyun=1.13.4.0; tek oyunculu; uyumlu=True` başlangıç satırını kontrol edin. Luatrauma kuruluysa `cl_reloadluacs` komutu tanınır. İlk testte başka bot AI modlarını kapatın.
 
 Oyuncunun SDK/Python kurmasına gerek yoktur. Bunlar yalnızca kaynak kodu yeniden derlemek içindir. ZIP oyun veya Luatrauma yükleyicisini içermez.
 
@@ -62,7 +74,7 @@ python3 scripts/build.py
 Windows'ta gerekirse `py -3 scripts/build.py`. Oyun kurulum dizini gerekmez. Yayımlanmış gerçek referans ZIP'i `dependencies/` içinde bulunur; SHA-256 ve tüm DLL hash'leri doğrulanarak `Refs/` altına açılır. NuGet paketi gerekmez. Script karar mantığı testlerini ve üç platformun metadata kontrolünü çalıştırır, sonra platform DLL'lerini ve kurulabilir mod ZIP'ini üretir:
 
 - `build/LocalMods/CrewMiner/`
-- `build/CrewMiner-0.1.0-mod.zip`
+- `build/CrewMiner-0.1.1-mod.zip`
 - `build/verification.log`
 
 Geliştirme referanslarını oyun dizinine kopyalamayın. Runtime paketinde yalnız mod DLL'leri vardır.

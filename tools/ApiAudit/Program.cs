@@ -25,6 +25,7 @@ foreach(var platform in new[]{"Windows","Linux","OSX"})
     Method("Barotrauma.Items.Components.Pickable","OnPicked","Barotrauma.Character","System.Boolean","System.Boolean");
     Method("Barotrauma.Items.Components.RepairTool","Use","System.Single","Barotrauma.Character");
     Method("Barotrauma.Item","TryInteract","Barotrauma.Character","System.Boolean","System.Boolean","System.Boolean");
+    Method("Barotrauma.DebugConsole/Command",".ctor","System.String","System.String","System.Action`1<System.String[]>","System.Func`1<System.String[][]>","System.Boolean");
     Method("Barotrauma.Character","SetInput","Barotrauma.InputType","System.Boolean","System.Boolean");
     Method("Barotrauma.LuaCs.IPluginManagementService","TryGetPackageForPlugin","Barotrauma.ContentPackage&");
     var create=asm.MainModule.GetType("Barotrauma.AIObjectiveManager").Methods.Single(m=>m.Name=="CreateObjective");

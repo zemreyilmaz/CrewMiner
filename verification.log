@@ -83,6 +83,7 @@ Windows: Barotrauma 1.13.4.0
   System.Boolean Barotrauma.Items.Components.Pickable::OnPicked(Barotrauma.Character,System.Boolean,System.Boolean)
   System.Boolean Barotrauma.Items.Components.RepairTool::Use(System.Single,Barotrauma.Character)
   System.Boolean Barotrauma.Item::TryInteract(Barotrauma.Character,System.Boolean,System.Boolean,System.Boolean)
+  System.Void Barotrauma.DebugConsole/Command::.ctor(System.String,System.String,System.Action`1<System.String[]>,System.Func`1<System.String[][]>,System.Boolean)
   System.Void Barotrauma.Character::SetInput(Barotrauma.InputType,System.Boolean,System.Boolean)
   System.Boolean Barotrauma.LuaCs.IPluginManagementService::TryGetPackageForPlugin(Barotrauma.ContentPackage&)
 Linux: Barotrauma 1.13.4.0
@@ -98,6 +99,7 @@ Linux: Barotrauma 1.13.4.0
   System.Boolean Barotrauma.Items.Components.Pickable::OnPicked(Barotrauma.Character,System.Boolean,System.Boolean)
   System.Boolean Barotrauma.Items.Components.RepairTool::Use(System.Single,Barotrauma.Character)
   System.Boolean Barotrauma.Item::TryInteract(Barotrauma.Character,System.Boolean,System.Boolean,System.Boolean)
+  System.Void Barotrauma.DebugConsole/Command::.ctor(System.String,System.String,System.Action`1<System.String[]>,System.Func`1<System.String[][]>,System.Boolean)
   System.Void Barotrauma.Character::SetInput(Barotrauma.InputType,System.Boolean,System.Boolean)
   System.Boolean Barotrauma.LuaCs.IPluginManagementService::TryGetPackageForPlugin(Barotrauma.ContentPackage&)
 OSX: Barotrauma 1.13.4.0
@@ -113,9 +115,10 @@ OSX: Barotrauma 1.13.4.0
   System.Boolean Barotrauma.Items.Components.Pickable::OnPicked(Barotrauma.Character,System.Boolean,System.Boolean)
   System.Boolean Barotrauma.Items.Components.RepairTool::Use(System.Single,Barotrauma.Character)
   System.Boolean Barotrauma.Item::TryInteract(Barotrauma.Character,System.Boolean,System.Boolean,System.Boolean)
+  System.Void Barotrauma.DebugConsole/Command::.ctor(System.String,System.String,System.Action`1<System.String[]>,System.Func`1<System.String[][]>,System.Boolean)
   System.Void Barotrauma.Character::SetInput(Barotrauma.InputType,System.Boolean,System.Boolean)
   System.Boolean Barotrauma.LuaCs.IPluginManagementService::TryGetPackageForPlugin(Barotrauma.ContentPackage&)
-51 metadata checks passed; DLLs were inspected without running the game.
+54 metadata checks passed; DLLs were inspected without running the game.
   Geri yüklenecek projeler belirleniyor...
   Geri yükleme için tüm projeler güncel.
   CrewMiner -> <PROJECT>/build/LocalMods/CrewMiner/bin/Client/Windows/CrewMiner.dll
@@ -124,7 +127,7 @@ Oluşturma başarılı oldu.
     0 Uyarı
     0 Hata
 
-Geçen Süre 00:00:00.41
+Geçen Süre 00:00:00.38
   Geri yüklenecek projeler belirleniyor...
   Geri yükleme için tüm projeler güncel.
   CrewMiner -> <PROJECT>/build/LocalMods/CrewMiner/bin/Client/Linux/CrewMiner.dll
@@ -133,7 +136,7 @@ Oluşturma başarılı oldu.
     0 Uyarı
     0 Hata
 
-Geçen Süre 00:00:00.42
+Geçen Süre 00:00:00.40
   Geri yüklenecek projeler belirleniyor...
   Geri yükleme için tüm projeler güncel.
   CrewMiner -> <PROJECT>/build/LocalMods/CrewMiner/bin/Client/OSX/CrewMiner.dll
@@ -144,4 +147,4 @@ Oluşturma başarılı oldu.
 
 Geçen Süre 00:00:00.40
 Package XML and asset paths verified.
-Mod ZIP: <PROJECT>/build/CrewMiner-0.1.0-mod.zip
+Mod ZIP: <PROJECT>/build/CrewMiner-0.1.1-mod.zip

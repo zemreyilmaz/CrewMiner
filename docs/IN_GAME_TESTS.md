@@ -6,7 +6,7 @@ Durum: **Henüz uygulanmadı.** Yerel derleme veya birim testi bu listeyi geçmi
 
 - Oyun sürümü: ____ (hedef 1.13.4.0)
 - OS: ____ / Luatrauma commit/sürüm: ____ (hedef 85ded59c)
-- Mod sürümü: 0.1.0 / Denizaltı: ____ / Diğer AI modları: ____
+- Mod sürümü: 0.1.1 / Denizaltı: ____ / Diğer AI modları: ____
 - Tarih ve görev/harita seed'i: ____
 
 | # | İşlem | Beklenen | Sonuç |
@@ -31,3 +31,7 @@ Durum: **Henüz uygulanmadı.** Yerel derleme veya birim testi bu listeyi geçmi
 Test 6 için Editör test oturumunda kaynakları bilinen mesafelere koymak yardımcı olur; dünya/display ölçüsünde 100 birim = 1 m. Radyal sınır, kaynak Item.WorldPosition merkezine göre değerlendirilir. Küçük menzilde hiç kaynak yoksa çıkıştan sonra görev güvenle biter; bu hata değildir.
 
 Hata paylaşımı: `LocalMods/CrewMiner/CrewMiner.log`, varsa `CrewMiner.previous.log`, F3 exception metni, bu doldurulmuş tablo, denizaltı adı/seed, son verilen emir ve görülen davranışı paylaşın. Konsolda CrewMiner başlangıç mesajı yoksa önce istemci Luatrauma/C# yükleme ayarını kontrol edin. Kayıtların içinde oyuncu/bot adları olabilir; paylaşmadan önce gerekirse bu adları değiştirin.
+
+## 0.1.1 tanılama kontrolü
+
+Hazırlan emrinden sonra F3 → `crewminer_status`. Çıktıda `mod=0.1.1`, `uyumlu=True`, `yamalar=True`, `tekOyunculu=True` beklenir. İlgili botta `EMİR`/`GÖREV`, aşama ve sonMesaj bilgilerini paylaşın. Konsolda komut tanınmıyorsa bu sürümün davranış DLL’i yüklenmemiştir. Mod kapatılıp yeniden yüklendiğinde komutun tek kez kaydolduğunu da kontrol edin.

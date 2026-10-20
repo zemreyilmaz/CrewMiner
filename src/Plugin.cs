@@ -13,27 +13,68 @@ public sealed class Plugin : IAssemblyPlugin
     internal static readonly Dictionary<Character, MiningObjective> Jobs = new();
     internal static readonly Reservations<Item, Character> Claims = new();
     private Harmony? harmony;
+    private DebugConsole.Command? statusCommand;
+    private bool patchesReady;
+    private string startupFailure = "";
     private string root = "";
     private bool compatible;
     private static float sweepTimer;
     internal static string ConfigPath => System.IO.Path.Combine(Instance?.root ?? "", "Config", "CrewMiner.xml");
     internal static Settings Config { get; private set; } = new();
-    internal static bool Authorized => Instance?.compatible == true && GameMain.NetworkMember == null;
+    internal static bool Authorized => Instance is { compatible:true, patchesReady:true } && GameMain.NetworkMember == null;
     public void PreInitPatching() { }
     public void Initialize()
     {
         Instance=this;
         if (PluginService.TryGetPackageForPlugin<Plugin>(out var package)) root=System.IO.Path.GetFullPath(package.Dir);
         compatible = GameMain.Version == new Version(1,13,4,0);
-        Log($"CrewMiner 0.1.0; oyun={GameMain.Version}; tek oyunculu; uyumlu={compatible}");
+        statusCommand = new DebugConsole.Command("crewminer_status",
+            "CrewMiner yükleme durumunu ve botların mevcut görev aşamasını gösterir; hiçbir botu hareket ettirmez.",
+            _ => PrintStatus(), isCheat:false);
+        DebugConsole.Commands.Add(statusCommand);
+        Log($"CrewMiner 0.1.1; oyun={GameMain.Version}; tek oyunculu; uyumlu={compatible}");
         Config=Settings.Load(System.IO.Path.Combine(root,"Config","CrewMiner.xml"),Log);
         harmony=new Harmony("crewminer.singleplayer.v1");
-        harmony.Patch(AccessTools.Method(typeof(AIObjectiveManager),nameof(AIObjectiveManager.CreateObjective)), prefix: new HarmonyMethod(typeof(Plugin),nameof(CreateOrder)));
-        harmony.Patch(AccessTools.Method(typeof(AIObjectiveManager),nameof(AIObjectiveManager.UpdateObjectives)), postfix: new HarmonyMethod(typeof(Plugin),nameof(AfterObjectives)));
-        harmony.Patch(AccessTools.Method(typeof(GameSession),nameof(GameSession.Update)), postfix: new HarmonyMethod(typeof(Plugin),nameof(Sweep)));
-        harmony.Patch(AccessTools.Method(typeof(Pickable),nameof(Pickable.OnPicked),new[]{typeof(Character),typeof(bool),typeof(bool)}), prefix:new HarmonyMethod(typeof(Plugin),nameof(PickOne)));
-        harmony.Patch(AccessTools.PropertySetter(typeof(Character),nameof(Character.Controlled)), prefix: new HarmonyMethod(typeof(Plugin),nameof(ControlTaken)));
-        harmony.Patch(AccessTools.Method(typeof(GameSession),nameof(GameSession.EndRound)), prefix: new HarmonyMethod(typeof(Plugin),nameof(EndRound)));
+        try
+        {
+            harmony.Patch(AccessTools.Method(typeof(AIObjectiveManager),nameof(AIObjectiveManager.CreateObjective)), prefix: new HarmonyMethod(typeof(Plugin),nameof(CreateOrder)));
+            harmony.Patch(AccessTools.Method(typeof(AIObjectiveManager),nameof(AIObjectiveManager.UpdateObjectives)), postfix: new HarmonyMethod(typeof(Plugin),nameof(AfterObjectives)));
+            harmony.Patch(AccessTools.Method(typeof(GameSession),nameof(GameSession.Update)), postfix: new HarmonyMethod(typeof(Plugin),nameof(Sweep)));
+            harmony.Patch(AccessTools.Method(typeof(Pickable),nameof(Pickable.OnPicked),new[]{typeof(Character),typeof(bool),typeof(bool)}), prefix:new HarmonyMethod(typeof(Plugin),nameof(PickOne)));
+            harmony.Patch(AccessTools.PropertySetter(typeof(Character),nameof(Character.Controlled)), prefix: new HarmonyMethod(typeof(Plugin),nameof(ControlTaken)));
+            harmony.Patch(AccessTools.Method(typeof(GameSession),nameof(GameSession.EndRound)), prefix: new HarmonyMethod(typeof(Plugin),nameof(EndRound)));
+            patchesReady=true;
+        }
+        catch(Exception e)
+        {
+            startupFailure=e.ToString();
+            harmony.UnpatchSelf();
+            Log("Yükleme tamamlanamadı; bot otomasyonu kapalı. " + startupFailure);
+        }
+        Log("Tanılama: F3 konsoluna crewminer_status yazın.");
+    }
+    private void PrintStatus()
+    {
+        Log($"STATUS mod=0.1.1; oyun={GameMain.Version}; hedef=1.13.4.0; uyumlu={compatible}; yamalar={patchesReady}; tekOyunculu={GameMain.NetworkMember==null}; etkin={Authorized}; karakter={Character.Controlled?.Name ?? "yok"}");
+        if(!compatible) Log("ENGEL: Oyun sürümü hedefle eşleşmiyor. Sürüm kontrolü kaldırılmadan, gerçek sürüme uygun DLL/API ile yeniden derleme gerekir.");
+        if(!patchesReady) Log("ENGEL: Davranış yamaları yüklenemedi. " + startupFailure);
+        if(GameMain.NetworkMember!=null) Log("ENGEL: Bu paket çok oyunculu oturumlarda çalışmaz.");
+        var team=Character.Controlled?.TeamID;
+        int count=0;
+        foreach(var c in Character.CharacterList.Where(c=>!c.Removed && c.AIController is HumanAIController && (!team.HasValue || c.TeamID==team.Value)))
+        {
+            count++;
+            var ai=(HumanAIController)c.AIController;
+            var currentOrders=c.CurrentOrders?.AsEnumerable() ?? Enumerable.Empty<Order>();
+            var orders=string.Join(",",currentOrders.Select(o=>$"{o.Identifier}.{o.Option}"));
+            Log($"BOT {c.Name}#{c.ID}: bot={c.IsBot}; ölü={c.IsDead}; emirler=[{orders}]; aktif={ai.ObjectiveManager.CurrentObjective?.Identifier.ToString() ?? "yok"}");
+            if(Jobs.TryGetValue(c,out var job)) Log(job.DescribeStatus());
+            else if(currentOrders.Any(o=>o.Identifier=="crewminer".ToIdentifier()))
+                Log("ENGEL: CrewMiner emri var ama etkin madencilik görevi yok. Önce Madenciliğe hazırlan verin; ardından crewminer_status çıktısını paylaşın.");
+            else Log("DURUM: Bu karakterde etkin CrewMiner görevi/emri yok.");
+        }
+        if(count==0) Log("DURUM: Bu oturumda görülebilen insan bot yok; oyunda bir tur başlatın.");
+        Log($"STATUS SONU; günlük={System.IO.Path.Combine(root,"CrewMiner.log")}");
     }
     public void OnLoadCompleted() { }
     private static bool CreateOrder(AIObjectiveManager __instance, Order order, ref AIObjective? __result)
@@ -41,8 +82,15 @@ public sealed class Plugin : IAssemblyPlugin
         if(order?.Identifier != "crewminer".ToIdentifier()) return true;
         __result=null;
         var c=__instance.character;
-        if(!Authorized) { Tell(c,"Bu paket yalnızca Barotrauma 1.13.4.0 tek oyunculu oturumunda çalışır."); return false; }
-        if(!c.IsBot || c.IsDead) return false;
+        Log($"EMİR bot={c.Name}#{c.ID}; seçenek={order.Option}; etkin={Authorized}; isBot={c.IsBot}");
+        if(!Authorized)
+        {
+            Tell(c,Instance?.patchesReady != true ? "Davranış kodu yüklenemedi. F3: crewminer_status." :
+                Instance?.compatible != true ? $"Sürüm uyumsuz: oyun {GameMain.Version}, gereken 1.13.4.0. F3: crewminer_status." :
+                "Bu paket çok oyunculu oturumda çalışmaz. F3: crewminer_status.");
+            return false;
+        }
+        if(!c.IsBot || c.IsDead) { Tell(c,"Bu emir yaşayan, oyuncunun kontrol etmediği bir bota verilmelidir.");return false; }
         Jobs.TryGetValue(c,out var job);
         if(job?.Finished == true) { job.Stop("Önceki görev kapatıldı.",false); Jobs.Remove(c); job=null; }
         if(order.Option == "prepare".ToIdentifier())
@@ -145,7 +193,9 @@ public sealed class Plugin : IAssemblyPlugin
     }
     public void Dispose()
     {
-        Clear(true);harmony?.UnpatchSelf();harmony=null;Instance=null;
+        Clear(true);harmony?.UnpatchSelf();harmony=null;patchesReady=false;
+        if(statusCommand!=null) DebugConsole.Commands.Remove(statusCommand);
+        statusCommand=null;Instance=null;
     }
     internal static void Tell(Character c,string text)
     {

@@ -41,6 +41,13 @@ internal sealed class MiningObjective : AIObjective
     public MiningObjective(Character character, AIObjectiveManager manager, Submarine home) : base(character, manager, 1)
     { Home=home;settings=Plugin.Config; }
 
+    internal string DescribeStatus()
+    {
+        var active=objectiveManager.CurrentObjective;
+        return $"GÖREV {character.Name}#{character.ID}: aşama={Stage}; askıda={suspended}; bizimGörevAktif={active==this}; " +
+            $"öncelik={Priority:0.0}; aktifÖncelik={active?.Priority:0.0}; altGörev={child?.GetType().Name ?? "yok"}; " +
+            $"süre={phaseElapsed:0}s; gemi={Home.ID}; oda={character.CurrentHull?.ID.ToString() ?? "dışarı"}; sonMesaj={lastStatus}";
+    }
     private void Say(string text)
     {
         if(lastStatus==text) return;
